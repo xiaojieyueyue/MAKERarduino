@@ -1,0 +1,13 @@
+{
+    "name": "Test C5 Library",
+    "version": "1.0.0",
+    "description": "A test library specifically for ESP32-C5 board.",
+    "author": "CK User",
+    "id": "Test_C5_Lib",
+    "framework": "arduino",
+    "platforms": [
+        "esp32"
+    ],
+    "architecture": "esp32c5",
+    "url": "https://github.com/your/repo"
+}
