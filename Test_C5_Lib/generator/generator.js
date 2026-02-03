@@ -1,3 +1,3 @@
-Blockly.Arduino['test_c5_hello'] = function(block) {
+arduinoGenerator.forBlock['test_c5_hello'] = function(block) {
     return 'Serial.println("Hello!");\n';
 };
