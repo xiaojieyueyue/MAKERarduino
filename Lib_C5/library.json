@@ -1,0 +1,12 @@
+{
+    "name": "Monorepo Lib C5",
+    "version": "1.0.0",
+    "description": "Subfolder library for C5",
+    "author": "CK User",
+    "id": "Monorepo_Lib_C5",
+    "framework": "arduino",
+    "platforms": [
+        "esp32"
+    ],
+    "architecture": "esp32c5"
+}
