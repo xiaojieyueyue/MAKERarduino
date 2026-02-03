@@ -1,0 +1,15 @@
+{
+    "name": "CK 测试积木库",
+    "version": "1.0.0",
+    "description": "用于测试积木库加载功能的示例库",
+    "author": "CK Team",
+    "id": "ck_test_lib",
+    "framework": "arduino",
+    "platforms": [
+        "esp32"
+    ],
+    "architectures": [
+        "esp32c5",
+        "esp32"
+    ]
+}
