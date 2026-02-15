@@ -1,0 +1,8 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <category name="AVR Blink Test" colour="190">
+    <block type="ck_avr_led_init"></block>
+    <block type="ck_avr_led_blink_once">
+      <value name="MS"><shadow type="math_number"><field name="NUM">200</field></shadow></value>
+    </block>
+  </category>
+</xml>

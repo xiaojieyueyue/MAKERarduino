@@ -1,0 +1,16 @@
+{
+  "name": "CK_ESP32C5_WiFi_Test",
+  "version": "1.0.0",
+  "author": "CK",
+  "sentence": "ESP32-C5 WiFi test library for cloud filtering.",
+  "paragraph": "This library should only appear for ESP32 family, especially ESP32-C5.",
+  "category": "Communication",
+  "architecture": "esp32c5",
+  "platforms": ["esp32"],
+  "includes": ["CK_ESP32C5_WiFi_Test.h"],
+  "id": "ck_esp32c5_wifi_test",
+  "extensions": {
+    "blocks_code": "blocks/blocks.js",
+    "generator_code": "blocks/generator.js"
+  }
+}

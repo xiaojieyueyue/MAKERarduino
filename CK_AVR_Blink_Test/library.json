@@ -1,0 +1,15 @@
+{
+  "name": "CK_AVR_Blink_Test",
+  "version": "1.0.0",
+  "author": "CK",
+  "sentence": "AVR-only test library for cloud filtering.",
+  "paragraph": "This library should only appear on AVR boards such as Uno/Nano.",
+  "category": "Device Control",
+  "architectures": ["avr"],
+  "includes": ["CK_AVR_Blink_Test.h"],
+  "id": "ck_avr_blink_test",
+  "extensions": {
+    "blocks_code": "blocks/blocks.js",
+    "generator_code": "blocks/generator.js"
+  }
+}
