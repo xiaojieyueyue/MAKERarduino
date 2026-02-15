@@ -9,11 +9,51 @@
       ['D6(GPIO12)', '12'], ['D7(GPIO13)', '13'], ['D8(GPIO15)', '15']
     ],
     ESP32: [
-      ['GPIO2', '2'], ['GPIO4', '4'], ['GPIO5', '5'], ['GPIO12', '12'], ['GPIO13', '13'], ['GPIO14', '14'],
-      ['GPIO15', '15'], ['GPIO16', '16'], ['GPIO17', '17'], ['GPIO18', '18'], ['GPIO19', '19'], ['GPIO21', '21'],
-      ['GPIO22', '22'], ['GPIO23', '23'], ['GPIO25', '25'], ['GPIO26', '26'], ['GPIO27', '27'], ['GPIO32', '32'], ['GPIO33', '33']
+      ['GPIO0', '0'], ['GPIO1', '1'], ['GPIO2', '2'], ['GPIO3', '3'], ['GPIO4', '4'], ['GPIO5', '5'],
+      ['GPIO6', '6'], ['GPIO7', '7'], ['GPIO8', '8'], ['GPIO9', '9'], ['GPIO10', '10'], ['GPIO11', '11'],
+      ['GPIO12', '12'], ['GPIO13', '13'], ['GPIO14', '14'], ['GPIO15', '15'], ['GPIO16', '16'], ['GPIO17', '17'],
+      ['GPIO18', '18'], ['GPIO19', '19'], ['GPIO20', '20'], ['GPIO21', '21'], ['GPIO22', '22'], ['GPIO23', '23'],
+      ['GPIO24', '24'], ['GPIO25', '25'], ['GPIO26', '26'], ['GPIO27', '27'], ['GPIO28', '28'], ['GPIO32', '32'],
+      ['GPIO33', '33'], ['GPIO34', '34'], ['GPIO35', '35'], ['GPIO36', '36'], ['GPIO37', '37'], ['GPIO38', '38'],
+      ['GPIO39', '39'], ['GPIO40', '40'], ['GPIO41', '41'], ['GPIO42', '42'], ['GPIO43', '43'], ['GPIO44', '44'],
+      ['GPIO45', '45'], ['GPIO46', '46'], ['GPIO47', '47'], ['GPIO48', '48']
     ]
   };
+
+  function ckNormalizeOptions(options) {
+    if (!Array.isArray(options)) return [];
+    var out = [];
+    for (var i = 0; i < options.length; i++) {
+      var item = options[i];
+      if (!Array.isArray(item) || item.length < 2) continue;
+      out.push([String(item[0]), String(item[1])]);
+    }
+    return out;
+  }
+
+  function ckReadBoardPinsFromRuntime() {
+    try {
+      if (Blockly && Array.isArray(Blockly.CK_BOARD_PIN_OPTIONS) && Blockly.CK_BOARD_PIN_OPTIONS.length > 0) {
+        return ckNormalizeOptions(Blockly.CK_BOARD_PIN_OPTIONS);
+      }
+    } catch (e) {}
+    try {
+      if (Blockly && Blockly.CK && Array.isArray(Blockly.CK.boardPins) && Blockly.CK.boardPins.length > 0) {
+        return ckNormalizeOptions(Blockly.CK.boardPins);
+      }
+    } catch (e) {}
+    try {
+      if (typeof globalThis !== 'undefined' && Array.isArray(globalThis.CK_BOARD_PIN_OPTIONS) && globalThis.CK_BOARD_PIN_OPTIONS.length > 0) {
+        return ckNormalizeOptions(globalThis.CK_BOARD_PIN_OPTIONS);
+      }
+    } catch (e) {}
+    try {
+      if (typeof window !== 'undefined' && Array.isArray(window.CK_BOARD_PIN_OPTIONS) && window.CK_BOARD_PIN_OPTIONS.length > 0) {
+        return ckNormalizeOptions(window.CK_BOARD_PIN_OPTIONS);
+      }
+    } catch (e) {}
+    return [];
+  }
 
   function ckReadActiveBoard() {
     var candidates = [];
@@ -41,14 +81,8 @@
     var raw = String(ckReadActiveBoard() || '').toLowerCase();
     if (!raw) return 'AVR';
 
-    var fqbnParts = raw.split(':');
-    var arch = fqbnParts.length >= 2 ? fqbnParts[1] : raw;
-    var boardToken = fqbnParts.length >= 3 ? fqbnParts[2] : raw;
-
     if (
       raw.indexOf('esp8266') >= 0 ||
-      arch.indexOf('esp8266') >= 0 ||
-      boardToken.indexOf('esp8266') >= 0 ||
       raw.indexOf('nodemcu') >= 0 ||
       raw.indexOf('d1_mini') >= 0 ||
       raw.indexOf('d1mini') >= 0
@@ -56,17 +90,12 @@
       return 'ESP8266';
     }
 
-    if (
-      raw.indexOf('esp32') >= 0 ||
-      arch.indexOf('esp32') >= 0 ||
-      boardToken.indexOf('esp32') >= 0
-    ) {
+    if (raw.indexOf('esp32') >= 0) {
       return 'ESP32';
     }
 
     if (
       raw.indexOf('arduino:avr') >= 0 ||
-      arch === 'avr' ||
       raw.indexOf('avr') >= 0 ||
       raw.indexOf('atmega') >= 0 ||
       raw.indexOf('uno') >= 0 ||
@@ -83,11 +112,17 @@
     return CK_PIN_PRESETS[profile] || CK_PIN_PRESETS.AVR;
   }
 
+  function ckResolvePinOptions() {
+    var runtimePins = ckReadBoardPinsFromRuntime();
+    if (runtimePins.length > 0) return runtimePins;
+    return ckGetPinPreset(ckDetectProfile());
+  }
+
   function ckSyncPinField(block) {
     var pinField = block.getField('PIN');
     if (!pinField) return;
 
-    var options = ckGetPinPreset(ckDetectProfile());
+    var options = ckResolvePinOptions();
     pinField.menuGenerator_ = options;
 
     var current = pinField.getValue();
@@ -116,9 +151,8 @@
         .appendField(new Blockly.FieldDropdown([
           ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']
         ]), 'CHANNEL')
-        .appendField('板卡自动识别')
         .appendField('引脚')
-        .appendField(new Blockly.FieldDropdown(ckGetPinPreset('AVR')), 'PIN');
+        .appendField(new Blockly.FieldDropdown(ckResolvePinOptions()), 'PIN');
       this.appendValueInput('COUNT').setCheck('Number').appendField('灯珠数量');
       this.appendValueInput('BRIGHT').setCheck('Number').appendField('亮度(0-255)');
       this.setPreviousStatement(true, null);
