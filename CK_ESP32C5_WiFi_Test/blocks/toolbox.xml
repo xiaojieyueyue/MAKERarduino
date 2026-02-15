@@ -1,10 +1,8 @@
-<xml xmlns="https://developers.google.com/blockly/xml">
-  <category name="ESP32C5 WiFi Test" colour="215">
-    <block type="ck_esp32c5_wifi_connect">
-      <value name="SSID"><shadow type="text"><field name="TEXT">YourWiFi</field></shadow></value>
-      <value name="PASS"><shadow type="text"><field name="TEXT">12345678</field></shadow></value>
-    </block>
-    <block type="ck_esp32c5_wifi_connected"></block>
-    <block type="ck_esp32c5_wifi_ip"></block>
-  </category>
-</xml>
+<category name="ESP32C5 WiFi Test" colour="215">
+  <block type="ck_esp32c5_wifi_connect">
+    <value name="SSID"><shadow type="text"><field name="TEXT">YourWiFi</field></shadow></value>
+    <value name="PASS"><shadow type="text"><field name="TEXT">12345678</field></shadow></value>
+  </block>
+  <block type="ck_esp32c5_wifi_connected"></block>
+  <block type="ck_esp32c5_wifi_ip"></block>
+</category>
