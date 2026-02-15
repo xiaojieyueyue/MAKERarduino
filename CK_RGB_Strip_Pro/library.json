@@ -1,9 +1,9 @@
 {
   "name": "CK RGB Strip Pro",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "xiaojieyueyue",
   "sentence": "Detailed RGB strip control based on Adafruit NeoPixel.",
-  "paragraph": "Supports multi-channel RGB strip setup, per-pixel color, fill, brightness, clear, rainbow and show.",
+  "paragraph": "Supports multi-channel RGB strip setup, per-pixel color, fill, brightness, clear, rainbow and show with automatic board profile pin detection.",
   "category": "Display",
   "architectures": ["avr", "esp32", "esp8266"],
   "platforms": ["avr", "esp32", "esp8266"],
