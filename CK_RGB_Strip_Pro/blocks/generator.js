@@ -1,4 +1,4 @@
-﻿function ck_rgb_channel(block) {
+function ck_rgb_channel(block) {
   var ch = parseInt(block.getFieldValue('CHANNEL') || '1', 10);
   if (!(ch >= 1 && ch <= 4)) ch = 1;
   return String(ch);

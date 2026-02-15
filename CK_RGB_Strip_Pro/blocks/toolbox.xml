@@ -1,4 +1,4 @@
-﻿<category name="RGB灯带" colour="295">
+<category name="RGB灯带" colour="295">
   <block type="ck_rgb_np_init">
     <value name="COUNT"><shadow type="math_number"><field name="NUM">30</field></shadow></value>
     <value name="BRIGHT"><shadow type="math_number"><field name="NUM">80</field></shadow></value>
