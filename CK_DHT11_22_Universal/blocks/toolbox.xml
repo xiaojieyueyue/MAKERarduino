@@ -1,0 +1,7 @@
+﻿<category name="DHT11/22" colour="160">
+  <block type="ck_dht_init"></block>
+  <block type="ck_dht_temperature"></block>
+  <block type="ck_dht_humidity"></block>
+  <block type="ck_dht_heat_index"></block>
+  <block type="ck_dht_data_ok"></block>
+</category>

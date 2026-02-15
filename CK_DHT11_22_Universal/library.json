@@ -1,0 +1,16 @@
+﻿{
+  "name": "CK DHT11/22 Universal",
+  "version": "1.0.0",
+  "author": "xiaojieyueyue",
+  "sentence": "DHT11/DHT22 blocks for AVR, ESP8266 and ESP32 boards.",
+  "paragraph": "Provides initialization, temperature, humidity, heat index and data validity blocks with board pin presets.",
+  "category": "Sensors",
+  "architectures": ["avr", "esp32", "esp8266"],
+  "platforms": ["avr", "esp32", "esp8266"],
+  "includes": ["CK_DHT11_22_Universal.h"],
+  "id": "ck_dht11_22_universal",
+  "extensions": {
+    "blocks_code": "blocks/blocks.js",
+    "generator_code": "blocks/generator.js"
+  }
+}
