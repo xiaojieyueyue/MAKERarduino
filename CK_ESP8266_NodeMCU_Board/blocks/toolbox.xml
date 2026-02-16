@@ -1,0 +1,6 @@
+﻿<xml xmlns="https://developers.google.com/blockly/xml">
+  <category name="ESP8266 开发板" colour="200">
+    <block type="ck_esp8266_gpio_mode"></block>
+    <block type="ck_esp8266_gpio_write"></block>
+  </category>
+</xml>
